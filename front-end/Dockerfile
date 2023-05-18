@@ -1,25 +1,29 @@
-# Základový obraz Node.js
-FROM node:lts-alpine
+# Základový obraz
+FROM node:14-alpine
 
-# Pracovný priečinok vo vnútri kontajnera
-WORKDIR /usr/src/app
+# Priečinok pre aplikáciu
+WORKDIR /app
 
-# Nakopírovať súbory balíka package.json a package-lock.json
+# Kópiovanie package.json a package-lock.json
 COPY package*.json ./
 
-# Nainštalovať závislosti pomocou npm
-RUN npm ci
+# Inštalácia závislostí
+RUN npm install
 
-
-# Nakopírovať zvyšok zdrojových súborov
+# Kópiovanie zdrojových súborov
 COPY . .
 
-# Kompilovať TypeScript do JavaScript
+# Kompilácia a vytvorenie produkčného buildu
 RUN npm run build
 
-# Expozícia portu 3000 (alebo požadovaného portu pre vášu aplikáciu)
-EXPOSE 3000
+# Nginx obraz
+FROM nginx:alpine
 
-# Príkaz na spustenie aplikácie
-CMD ["npm", "start"]
+# Kopírovanie vytvorených súborov z aplikácie do Nginx
+COPY --from=0 /app/build /usr/share/nginx/html
 
+# Exponovanie portu
+EXPOSE 33
+
+# Príkaz pre spustenie Nginx servera
+CMD ["nginx", "-g", "daemon off;"]
