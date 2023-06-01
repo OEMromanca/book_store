@@ -23,7 +23,7 @@ FROM nginx:alpine
 COPY --from=0 /app/build /usr/share/nginx/html
 
 # Exponovanie portu
-EXPOSE 33
+EXPOSE 88
 
 # Príkaz pre spustenie Nginx servera
 CMD ["nginx", "-g", "daemon off;"]
