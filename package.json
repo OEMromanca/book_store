@@ -1,0 +1,22 @@
+{
+  "name": "new_repo",
+  "version": "1.0.0",
+  "description": "book-store-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romanca/new_repo.git"
+  },
+  "author": "oem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romanca/new_repo/issues"
+  },
+  "homepage": "https://github.com/romanca/new_repo#readme",
+  "dependencies": {
+    "typescript": "^5.1.6"
+  }
+}
