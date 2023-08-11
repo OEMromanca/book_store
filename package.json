@@ -2,9 +2,12 @@
   "name": "new_repo",
   "version": "1.0.0",
   "description": "book-store-app",
-  "main": "index.js",
+  "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "cd backend && npx ts-node src/server.ts",
+    "frontend": "cd frontend && npm run dev"
   },
   "repository": {
     "type": "git",
@@ -18,5 +21,8 @@
   "homepage": "https://github.com/romanca/new_repo#readme",
   "dependencies": {
     "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
   }
 }
