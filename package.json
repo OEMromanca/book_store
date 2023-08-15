@@ -13,9 +13,9 @@
     "build": "npm run build-frontend && npm run build-backend",
     "build-frontend": "cd frontend && npm run build",
     "build-backend": "cd backend && tsc",
-    "build-root": "npm run build-frontend && npm run build-backend && mkdir -p dist && cp -R frontend/dist/* dist/",
+    "build-root": "npm run build-frontend && mkdir -p dist && cp -R frontend/dist/* dist/",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d ./dist"
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
