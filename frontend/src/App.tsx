@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <div>GH-PAGES</div>
+      <div>GH-PAGES test</div>
     </>
   );
 }
