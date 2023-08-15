@@ -15,7 +15,7 @@
     "build-backend": "cd backend && tsc",
     "build-root": "mkdir -p dist && cp -R frontend/dist/* dist/", 
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d ./dist"
+    "deploy": "gh-pages -d /Users/oem/Desktop/book_store/dist"
   },
   "repository": {
     "type": "git",
