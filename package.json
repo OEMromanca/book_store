@@ -1,25 +1,24 @@
 {
-  "name": "new_repo",
+  "name": "book_store",
   "version": "1.0.0",
   "description": "book-store-app",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\"",
     "backend": "cd backend && npx ts-node src/server.ts",
     "frontend": "cd frontend && npm run dev"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/romanca/new_repo.git"
+    "url": "git+https://github.com/OEMromanca/book_store.git"
   },
   "author": "oem",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/romanca/new_repo/issues"
+    "url": "https://github.com/OEMromanca/book_store/issues"
   },
-  "homepage": "https://github.com/romanca/new_repo#readme",
-  "dependencies": {
+   "dependencies": {
     "typescript": "^5.1.6"
   },
   "devDependencies": {
