@@ -1,0 +1,22 @@
+ 
+coverage/
+src/css
+src/**/*.js
+src/**/*.map
+*.log
+.nyc_output/
+.scannerwork/
+optimusOutput/
+.idea
+
+# Ignore log files
+**/*.log
+
+# Ignore version control system directories and files
+**/.git
+**/.gitignore
+**/.gitattributes
+**/.gitmodules
+
+# Ignore macOS-specific files
+**/.DS_Store
