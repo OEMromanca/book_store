@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Stiahnutie zdrojového kódu z GitHub repozitára
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/OEMromanca/book_store.git']]])
+            }
+        }
+        
+        stage('Build and Push Docker Images') {
+            steps {
+                script {
+                    // Build frontend Docker image
+                    dir('frontend') {
+                        def frontendImage = docker.build("my-frontend-app:${env.BUILD_NUMBER}", ".")
+                        docker.withRegistry('https://dockerhub.example.com', 'dockerhub-credentials') {
+                            frontendImage.push()
+                        }
+                    }
+                    
+                    // Build backend Docker image
+                    dir('backend') {
+                        def backendImage = docker.build("my-backend-app:${env.BUILD_NUMBER}", ".")
+                        docker.withRegistry('https://dockerhub.example.com', 'dockerhub-credentials') {
+                            backendImage.push()
+                        }
+                    }
+                }
+            }
+        }
+        
+        stage('Deploy') {
+            when {
+                expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
+            }
+            steps {
+                // Nasadenie Docker obrazov na cieľový server
+                // Príklad: docker run -d -p 3000:3000 my-frontend-app:${env.BUILD_NUMBER}
+                // Príklad: docker run -d -p 3001:3001 my-backend-app:${env.BUILD_NUMBER}
+            }
+        }
+    }
+}
