@@ -37,6 +37,7 @@ pipeline {
             }
             steps {
                 // Nasadenie Docker obrazov na cieľový server
+                sh 'docker run -u root --name jenkinsci -p 8080:8080 -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins:lts'
                 sh 'docker run -d -p 3000:3000 my-frontend-app:${env.BUILD_NUMBER}'
                 sh 'docker run -d -p 3001:3001 my-backend-app:${env.BUILD_NUMBER}'
             }
