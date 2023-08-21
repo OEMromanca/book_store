@@ -37,8 +37,8 @@ pipeline {
             }
             steps {
                 // Nasadenie Docker obrazov na cieľový server
-                // Príklad: docker run -d -p 3000:3000 my-frontend-app:${env.BUILD_NUMBER}
-                // Príklad: docker run -d -p 3001:3001 my-backend-app:${env.BUILD_NUMBER}
+                sh 'docker run -d -p 3000:3000 my-frontend-app:${env.BUILD_NUMBER}'
+                sh 'docker run -d -p 3001:3001 my-backend-app:${env.BUILD_NUMBER}'
             }
         }
         
