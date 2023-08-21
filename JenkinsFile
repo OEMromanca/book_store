@@ -8,54 +8,5 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/gh-pages']], userRemoteConfigs: [[url: 'https://github.com/OEMromanca/book_store.git']]])
             }
         }
-        
-        stage('Build and Push Docker Images') {
-            steps {
-                script {
-                    // Build frontend Docker image
-                    dir('frontend') {
-                        def frontendImage = docker.build("my-frontend-app:${env.BUILD_NUMBER}", ".")
-                        docker.withRegistry('https://dockerhub.example.com', 'dockerhub-credentials') {
-                            frontendImage.push()
-                        }
-                    }
-                    
-                    // Build backend Docker image
-                    dir('backend') {
-                        def backendImage = docker.build("my-backend-app:${env.BUILD_NUMBER}", ".")
-                        docker.withRegistry('https://dockerhub.example.com', 'dockerhub-credentials') {
-                            backendImage.push()
-                        }
-                    }
-                }
-            }
-        }
-        
-        stage('Deploy') {
-            when {
-                expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
-            }
-            steps {
-                // Nasadenie Docker obrazov na cieľový server
-                sh 'docker run -u root --name jenkinsci -p 8080:8080 -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins:lts'
-                sh 'docker run -d -p 3000:3000 my-frontend-app:${env.BUILD_NUMBER}'
-                sh 'docker run -d -p 3001:3001 my-backend-app:${env.BUILD_NUMBER}'
-            }
-        }
-        
-        stage('Update GitHub Pages') {
-            steps {
-                // Predpokladá sa, že obsah pre GitHub Pages je v priečinku docs
-                dir('docs') {
-                    // Nahraďte obsah priečinka pre GitHub Pages novým obsahom
-                    sh 'cp -r /cesta/k/novemu/obsahu/. .'
-                }
-                
-                // Komitujte a pushnite zmeny na GitHub
-                sh 'git add .'
-                sh 'git commit -m "Aktualizácia GitHub Pages"'
-                sh 'git push origin gh-pages'
-            }
-        }
     }
 }
