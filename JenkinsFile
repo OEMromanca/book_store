@@ -42,19 +42,6 @@ pipeline {
             }
         }
         
-        stage('Update GitHub Pages') {
-            steps {
-                // Predpokladá sa, že obsah pre GitHub Pages je v priečinku docs
-                dir('docs') {
-                    // Nahraďte obsah priečinka pre GitHub Pages novým obsahom
-                    sh 'cp -r /cesta/k/novemu/obsahu/. .'
-                }
-                
-                // Komitujte a pushnite zmeny na GitHub
-                sh 'git add .'
-                sh 'git commit -m "Aktualizácia GitHub Pages"'
-                sh 'git push origin gh-pages'
-            }
-        }
+         
     }
 }
