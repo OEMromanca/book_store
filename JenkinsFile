@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                     def projectImage = docker.build("book_store:${env.BUILD_NUMBER}", ".")
+                     sh 'docker build -t book_store:${env.BUILD_NUMBER} .'
                 }
             }
         }
