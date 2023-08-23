@@ -4,8 +4,21 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Stiahnutie zdrojového kódu z GitHub repozitára
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/OEMromanca/book_store.git']]])
+                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/OEMromanca/book_store.git']]])
+            }
+        }
+        
+        stage('Build Docker Image') {
+            steps {
+                script {
+                     def projectImage = docker.build("book_store:${env.BUILD_NUMBER}", ".")
+                }
+            }
+        }
+        
+        stage('Run Docker Containers') {
+            steps {
+                 sh 'docker run -d -p 3000:3000 -p 3001:3001 --name book_store book_store:${env.BUILD_NUMBER}'
             }
         }
     }
