@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Stiahnutie zdrojového kódu z GitHub repozitára
-                checkout([$class: 'GitSCM', branches: [[name: '*/gh-pages']], userRemoteConfigs: [[url: 'https://github.com/OEMromanca/book_store.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/OEMromanca/book_store.git']]])
             }
         }
     }
