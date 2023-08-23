@@ -18,7 +18,7 @@ pipeline {
         
         stage('Run Docker Containers') {
             steps {
-                sh 'docker run  --rm  --name book_store  -p 8080:8080 book_store:${env.BUILD_NUMBER}'
+                sh 'docker run --rm --name book_store -p 8080:8080 book_store:${env.BUILD_NUMBER}'
             }
         }
     }
