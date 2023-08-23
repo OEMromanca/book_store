@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <div>GH-PAGES test ok we have checked it after jenkins 11</div>
+      <div>GH-PAGES test ok we have checked it after jenkins </div>
     </>
   );
 }
