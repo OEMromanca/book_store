@@ -11,14 +11,14 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t jenkins:${env.BUILD_NUMBER} .'
+                    sh 'docker build -t book_store:${env.BUILD_NUMBER} .'
                 }
             }
         }
         
         stage('Run Docker Containers') {
             steps {
-                sh 'docker run -d -p 8080:8080 --name jenkins jenkins/jenkins:${env.BUILD_NUMBER}'
+                sh 'docker run  --rm  --name book_store  -p 8080:8080 book_store:${env.BUILD_NUMBER}'
             }
         }
     }
