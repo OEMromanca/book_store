@@ -18,7 +18,7 @@ pipeline {
         
         stage('Run Docker Containers') {
             steps {
-                sh 'docker run -d -p 8080:8080 --name jenkins jenkins:${env.BUILD_NUMBER}'
+                sh 'docker run -d -p 8080:8080 --name jenkins jenkins/jenkins:${env.BUILD_NUMBER}'
             }
         }
     }
