@@ -48,7 +48,7 @@ RUN npm run build-root
 EXPOSE 3000 3001
 
 # Define the command to start the application
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
 
 
 
