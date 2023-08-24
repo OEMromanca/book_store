@@ -7,11 +7,11 @@ pipeline {
     }
     stages {
 
-        stage('Cloning Git') {
-            steps {
-              git 'https://github.com/OEMromanca/book_store.git'
-            }   
-        }
+        // stage('Cloning Git') {
+        //     steps {
+        //       git 'https://github.com/OEMromanca/book_store.git'
+        //     }   
+        // }
 
         stage('Checkout') {
             steps {
