@@ -19,11 +19,12 @@ pipeline {
             }
         }
 
-     stage('Test') {
-      steps {
-         sh 'npm test'
-      }
-    } 
+      stage('Test') {
+    steps {
+        sh "chmod +x -R ${env.WORKSPACE}" // Zobrazí obsah priečinka workspace
+        sh "jenkins/test.sh"
+    }
+}
 
 }
 
