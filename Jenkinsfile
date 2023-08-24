@@ -19,11 +19,14 @@ pipeline {
             }
         }
 
-        stage('Test') {
-          steps {
-            script {
-             sh './jenkins/test.sh'
+         stage('Test') {
+    steps {
+        script {
+            sh "${WORKSPACE}/jenkins/test.sh"
         }
+    }
+}
+
     }
 }
 
