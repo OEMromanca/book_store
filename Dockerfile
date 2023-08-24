@@ -1,4 +1,10 @@
 FROM jenkins/jenkins:2.414.1-jdk17
+
+# Príkazy na inštaláciu Bash shellu
+USER root
+RUN apt-get update && apt-get install -y bash
+USER jenkins
+
 USER root
 RUN apt-get update && apt-get install -y lsb-release
 RUN curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
