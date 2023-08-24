@@ -1,13 +1,16 @@
-#!/usr/bin/env sh
 #!/bin/bash
 
-# Spustenie testov pre backend v priečinku 'backend'
-cd ../backend
+# Prejdite do priečinku frontend a spustite testy
+cd frontend
 npm install
 npm test
 
-# Spustenie testov pre frontend v priečinku 'frontend'
-cd ../frontend
+# Vráťte sa do koreňového priečinka
+cd ..
+
+# Prejdite do priečinku backend a spustite testy
+cd backend
 npm install
 npm test
+
 
