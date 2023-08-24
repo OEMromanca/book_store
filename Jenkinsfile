@@ -22,7 +22,7 @@ pipeline {
             steps {
                 sh './jenkins/deliver.sh' 
                 input message: 'Finished using the web site? (Click "Proceed" to continue)' 
-                sh './jenkins/scripts/kill.sh' 
+                sh './jenkins/kill.sh' 
             }
         }
          
