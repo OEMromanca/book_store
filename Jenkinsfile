@@ -19,12 +19,12 @@ pipeline {
             }
         }
 
-        stage('Test') {
-          steps {
-            
-             sh 'jenkins/test.sh'
-        
+       stage('Test') {
+    steps {
+        sh "chmod +x -R ${env.WORKSPACE}"
+        sh './jenkins/test.sh'
     }
+}
 }
 
 
