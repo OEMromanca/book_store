@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Current directory: $(pwd)"
 
 # Prejdite do priečinku frontend a spustite testy
 cd frontend
