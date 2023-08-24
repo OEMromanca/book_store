@@ -1,51 +1,65 @@
-# Use the Node.js LTS Alpine image as the base image for development
-FROM node:lts-alpine AS development
+FROM jenkins/jenkins:2.414.1-jdk17
+USER root
+RUN apt-get update && apt-get install -y lsb-release
+RUN curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
+    https://download.docker.com/linux/debian/gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) \
+    signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
+    https://download.docker.com/linux/debian \
+    $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
+RUN apt-get update && apt-get install -y docker-ce-cli
+USER jenkins
+RUN jenkins-plugin-cli --plugins "blueocean:1.27.6 docker-workflow:572.v950f58993843"
 
-# Set the environment to development
-ENV NODE_ENV development
 
-# Create and set the working directory for the frontend
-RUN mkdir -p /app/frontend
-WORKDIR /app/frontend
+# # Use the Node.js LTS Alpine image as the base image for development
+# FROM node:lts-alpine AS development
 
-# Copy frontend package.json and install dependencies
-COPY frontend/package*.json ./
-RUN npm install
+# # Set the environment to development
+# ENV NODE_ENV development
 
-# Copy frontend source files
-COPY frontend/ ./
+# # Create and set the working directory for the frontend
+# RUN mkdir -p /app/frontend
+# WORKDIR /app/frontend
 
-# Build the frontend
-RUN npm run build
+# # Copy frontend package.json and install dependencies
+# COPY frontend/package*.json ./
+# RUN npm install
 
-# Switch to the backend directory
-WORKDIR /app/backend
+# # Copy frontend source files
+# COPY frontend/ ./
 
-# Copy backend package.json and install dependencies
-COPY backend/package*.json ./
-RUN npm install
+# # Build the frontend
+# RUN npm run build
 
-# Install TypeScript globally
-RUN npm install -g typescript
+# # Switch to the backend directory
+# WORKDIR /app/backend
 
-# Copy backend source files
-COPY backend/ ./
+# # Copy backend package.json and install dependencies
+# COPY backend/package*.json ./
+# RUN npm install
 
-# Build the backend
-RUN npm run build
+# # Install TypeScript globally
+# RUN npm install -g typescript
 
-# Create a directory for the final distribution
-WORKDIR /app
-RUN mkdir -p /app/dist
+# # Copy backend source files
+# COPY backend/ ./
 
-# Copy the project files
-COPY . .
+# # Build the backend
+# RUN npm run build
 
-# Build the root folder
-RUN npm run build-root
+# # Create a directory for the final distribution
+# WORKDIR /app
+# RUN mkdir -p /app/dist
 
-# Expose ports 3000 and 3001 for the application
-EXPOSE 3000 3001
+# # Copy the project files
+# COPY . .
+
+# # Build the root folder
+# RUN npm run build-root
+
+# # Expose ports 3000 and 3001 for the application
+# EXPOSE 3000 3001
 
 # Define the command to start the application
 # CMD ["npm", "start"]
