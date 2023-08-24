@@ -7,7 +7,7 @@ pipeline {
     }
     stages {
 
-                stage('Checkout') {
+        stage('Checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/OEMromanca/book_store.git']]])
             }
