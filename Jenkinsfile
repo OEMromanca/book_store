@@ -13,11 +13,17 @@ pipeline {
         //     }   
         // }
 
-        stage('Checkout') {
+        stage('Cloning Git') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/OEMromanca/book_store.git']]])
-            }
+              git 'https://github.com/OEMromanca/book_store.git'
+            }   
         }
+
+        // stage('Checkout') {
+        //     steps {
+        //         checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/OEMromanca/book_store.git']]])
+        //     }
+        // }
 
         stage('Build') {
             steps {
