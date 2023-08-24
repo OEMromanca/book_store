@@ -23,7 +23,7 @@ pipeline {
     steps {
         sh "chmod +x -R ${env.WORKSPACE}"
         sh "ls -l ${env.WORKSPACE}"  // Zobrazí obsah priečinka workspace
-        sh "${env.WORKSPACE}/jenkins/test.sh"
+        sh "sudo ./jenkins/test.sh"
     }
 }
 
