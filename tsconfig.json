@@ -10,7 +10,7 @@
       "rootDir": "./",
       "resolveJsonModule": true
     },
-    "include": ["back-end/**/*", "frontend/**/*"],
+    "include": ["back-end/**/*.ts", "frontend/**/*.ts"],
     "references": [
       { "path": "./backend" },
       { "path": "./frontend" }
