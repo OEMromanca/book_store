@@ -1,4 +1,4 @@
-GET http://localhost:4000/users/logout
+GET http://localhost:4000/users
 Content-Type: application/json
 
 ###
@@ -10,6 +10,10 @@ Content-Type: application/json
   "email": "rikta@example.com",
   "password": "rikta"
 }
+
+###
+DELETE http://localhost:4000/users/logout
+Content-Type: application/json
 
 
 

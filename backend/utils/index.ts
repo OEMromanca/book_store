@@ -7,4 +7,5 @@ import { IUser } from "../interfaces";
       }
       res.status(200).json({ message: 'Logout successful' });
 
-}
+  }
+

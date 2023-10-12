@@ -7,7 +7,7 @@ export const userRouter = Router();
 userRouter.get('/',isAuthenticated, getUsers);
 userRouter.post('/register',registerUser);
 userRouter.post('/login', loginUser);
-userRouter.get('/logout', logOutUser)
+userRouter.delete('/logout', logOutUser)
 
  
 
