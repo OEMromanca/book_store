@@ -69,8 +69,14 @@ export async function loginUser(req: Request<{}, { message: string }, IUser, {},
  
 }
 
- 
-
+export async function logOutUser(req: Request<{}, { message: string }, IUser, {}, { user: IUser }>, res: Response<{ message: string }, { user: IUser }>, next: NextFunction) {
+  req.logOut((err: Error) => {
+    if (err) {
+      return next(err);
+    }
+    res.status(200).json({ message: 'Logout successful' });
+  });
+}
  
 
 
